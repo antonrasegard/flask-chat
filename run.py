@@ -3,6 +3,11 @@ from flask import Flask
 
 
 app = Flask(__name__)
+message = []
+
+
+def add_messages(username, message):
+    messages.append("{}: {}".format(username, message))
 
 
 @app.route('/')
@@ -13,11 +18,13 @@ def index():
 
 @app.route('/<username>')
 def user(username):
-    return "Hi " + username
+    """Display chat messages"""
+    return "Welcome, {0}".format(username, messages)
 
 
 @app.route('/<username>/<message>')
 def send_message(username, message):
+    """Create a new message and redirect back to the chat page"""
     return "{0}: {1}".format(username, message)
 
 
